@@ -1,11 +1,27 @@
+/* reference for coding principles we didn't go over in class or readings:
+- clamp: https://www.w3schools.com/cssref/func_clamp.php
+- root: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/:root
+honestly everything i used is in this big css guide here:
+https://developer.mozilla.org/en-US/docs/Web/CSS
+*/
+:root {
+/* 16px per rem */
+--default_spacing: 1rem;
+--rename_later: 2rem;
+--default_line_height: 1.7;
+--bold_weight: 700;
+--fixed_spacing = 1rem;
+--white: #FFFFFF;
+--black: #000000;
+--maize: #00274C;
+
+}
+
 
 body {
     font-family: Arial;
     font-size: 16px;
     line-height: 1.7;
-    /* ref:
-    https://www.w3schools.com/css/css_text_spacing.asp
-    */
     color: #202B38;
     background-color:#FFFFFF;
 }
@@ -28,7 +44,7 @@ h1 {
 h2 {
     font-size: 24px;
     color: #00274C;
-    margin-bottom: 16px;
+    margin-bottom: var(--default_spacing);
 }
 
 h3 {
@@ -38,7 +54,7 @@ h3 {
 }
 
 p {
-    margin-bottom: 16px;
+    margin-bottom: var(--default_spacing);
 }
 
 strong {
@@ -56,13 +72,15 @@ li {
 
 
 a {
-    color: #00000;
+    color: var(--black);
     text-decoration: underline;
     text-underline-offset: 3px;
 }
 
+
+
 a:hover {
-    color: #001B36;
+    color: #00274C;
 }
 
 
@@ -73,11 +91,11 @@ a[href="#main"] {
         */
     position: absolute;
     top: -160px;
-    left: 16px;
+    left: var(--default_spacing);
     z-index: 1000;
 
     background-color: #FFCB05;
-    color: #00274C;
+    color: var(--maize);
 
     padding: 16px 20px;
     font-weight: 700;
@@ -86,7 +104,7 @@ a[href="#main"] {
 }
 
 a[href="#main"]:focus {
-    top: 16px;
+    top: var(--default_spacing);
 }
 
 
@@ -168,7 +186,7 @@ article h3 {
 }
 
 article p {
-    margin-bottom: 16px;
+    margin-bottom: var(--default_spacing);
 }
 
 article ul,
@@ -183,8 +201,6 @@ article a {
 
 .different_tracks {
     display: grid;
-
-
     gap: 24px;
     align-items: start;
     margin: 32px 0;
@@ -211,10 +227,16 @@ article a {
 }
 
 .track_boxes li {
-    margin-bottom: 16px;
+    margin-bottom: var(--default_spacing);
 }
 
 
+.guidance_grid,
+.program_grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+}
 iframe {
     display: block;
     width: 100%;
@@ -274,10 +296,112 @@ aside a {
     font-weight: 700;
 }
 
+
+
+
+.error-page {
+    text-align: center;
+    max-width: 50rem;
+    margin: 3rem auto;
+    padding: 2rem 1rem;
+}
+
+.error-number {
+    font-size: clamp(5rem, 15vw, 10rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: #00274C;
+}
+
+.error-page h1 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    color: #00274C;
+}
+
+.error-page p {
+    margin-bottom: 2rem;
+}
+
+.home-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #00274C;
+    color: #FFFFFF;
+    font-weight: 700;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    margin-bottom: 2rem;
+}
+
+.home-button:hover,
+.home-button:focus-visible {
+    background-color: #001B36;
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
+.home-button:focus-visible {
+    outline: 3px solid #FFCB05;
+    outline-offset: 3px;
+}
+
+/*
+Reference:
+https://www.w3schools.com/cssref/func_clamp.php
+*/
+
 footer {
     background-color: #00274C;
     color: #FFFFFF;
     padding: 40px 20px;
     border-top: 6px solid #FFCB05;
     text-align: center;
+}
+
+footer a {
+color: var(--white);
+}
+
+footer a:hover {
+color:#FFCB05;
+}
+
+@media (min-width: 1024px){
+
+main{
+width: 90%;
+max-width: 1200px;
+margin: 0 auto;
+padding: 3rem 0 5rem;
+}
+
+header{
+padding: 2rem;
+}
+
+header h1{
+font-size: 2.5rem;
+margin: 2rem auto;
+}
+
+nav ul {
+grid-template-columns: repeat(4, 1fr);
+gap: var(--default_spacing);
+}
+
+nav .nav-style {
+padding: 1rem;
+min-height: 4rem;
+
+}
+.different_tracks{
+display: grid;
+grid-template-columns: repeat(2, 2fr);
+gap: 2rem;
+}
+.guidance_grid, .program_grid {
+ grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+
 }
